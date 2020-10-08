@@ -67,7 +67,7 @@ function Editor(props: PropsWithRef) {
   const { showToast } = useToasts();
   const isPrinting = useMediaQuery("print");
 
-  const onUploadImage = React.useCallback(
+  const onUpload = React.useCallback(
     async (file: File) => {
       const result = await uploadFile(file, { documentId: id });
       return result.url;
@@ -185,7 +185,8 @@ function Editor(props: PropsWithRef) {
     <ErrorBoundary reloadOnChunkMissing>
       <StyledEditor
         ref={props.forwardedRef}
-        uploadImage={onUploadImage}
+        uploadImage={onUpload}
+        uploadFile={onUpload}
         onClickLink={onClickLink}
         onShowToast={onShowToast}
         embeds={props.disableEmbeds ? EMPTY_ARRAY : embeds}
