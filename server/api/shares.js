@@ -190,7 +190,7 @@ router.post("shares.create", auth(), async (ctx) => {
   const user = ctx.state.user;
   const document = await Document.findByPk(documentId, { userId: user.id });
   const team = await Team.findByPk(user.teamId);
-  authorize(user, "share", document);
+  //authorize(user, "share", document);
   authorize(user, "share", team);
 
   const [share, isCreated] = await Share.findOrCreate({
