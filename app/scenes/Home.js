@@ -7,11 +7,16 @@ import { Switch, Route } from "react-router-dom";
 import { Action } from "components/Actions";
 import Empty from "components/Empty";
 import Heading from "components/Heading";
+import Subheading from "components/Subheading";
+import List from "components/List";
+import ListItem from "components/Toast";
+import Link from "components/Branding";
 import InputSearchPage from "components/InputSearchPage";
 import LanguagePrompt from "components/LanguagePrompt";
 import Scene from "components/Scene";
 import Tab from "components/Tab";
 import Tabs from "components/Tabs";
+import HelpText from "components/HelpText";
 import PaginatedDocumentList from "../components/PaginatedDocumentList";
 import useStores from "../hooks/useStores";
 import NewDocumentMenu from "menus/NewDocumentMenu";
@@ -26,7 +31,7 @@ function Home() {
   return (
     <Scene
       icon={<HomeIcon color="currentColor" />}
-      title={t("Home")}
+      title={t("MIB2 Wiki Home")}
       actions={
         <>
           <Action>
@@ -39,7 +44,27 @@ function Home() {
       }
     >
       {!ui.languagePromptDismissed && <LanguagePrompt />}
-      <Heading>{t("Home")}</Heading>
+      <Heading>{t("MIB2 Wiki")}</Heading>
+      <Subheading>
+      Welcome to VAG MIB2 Wiki
+      </Subheading>
+      <HelpText>
+      Share your knowledge with fellow VAG-Heads to collectively build on the newest hacks or solutions.
+      </HelpText>
+      <HelpText>
+      At the moment we are mostly focused on MIB solutions but this should be considered an open board to share knowledge about our favourite VAG cars.
+      </HelpText>
+      <HelpText>
+      To discuss anything on this board get in touch on either:  
+      </HelpText>
+      <ul>
+      <li>
+      Telegram: <a href="https://t.me/joinchat/T_pADdwJyUXq0VoH">https://t.me/joinchat/T_pADdwJyUXq0VoH</a>
+      </li>
+      <li>
+      Discord: <a href="https://discord.gg/YU3rjatWjT">https://discord.gg/YU3rjatWjT</a>
+      </li>
+      </ul>
       <Tabs>
         <Tab to="/home" exact>
           {t("Recently viewed")}
