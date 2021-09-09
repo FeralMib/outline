@@ -56,7 +56,14 @@ class TelegramLoginButton extends React.Component<Props, State> {
             location.href=`/?notice=auth-error`;
           }
           // console.log("Login Success: " + data);
-          location.href=`/auth/telegram?id=${data.id}&first_name=${data.first_name}&last_name=${data.last_name}&username=${data.username}&auth_date=${data.auth_date}&hash=${data.hash}`;
+          var str = "";
+          for (var key in data) {
+              if (str != "") {
+                  str += "&";
+              }
+              str += key + "=" + encodeURIComponent(data[key]);
+          }
+          location.href=`/auth/telegram?${str}`;
         });
     };
 
