@@ -40,6 +40,7 @@ allow(User, "move", Collection, (user, collection) => {
 });
 
 allow(User, "read", Collection, (user, collection) => {
+  if (user.isAdmin) return true;
   if (!collection || user.teamId !== collection.teamId) {
     return false;
   }
