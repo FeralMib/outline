@@ -218,6 +218,21 @@ class Collection extends ParanoidModel {
     options: { transaction: Transaction }
   ) {
     if (model.permission !== "read_write") {
+      const admins = await User.findAll({
+        where: {
+          isAdmin: true
+        }
+      });
+      await admins.forEach(
+        async admin => {
+          await CollectionUser.create({
+            collectionId: model.id,
+            permission: "read_write",
+            userId: admin.id,
+            createdById: model.createdById,
+          });
+        }
+      );
       return CollectionUser.findOrCreate({
         where: {
           collectionId: model.id,
