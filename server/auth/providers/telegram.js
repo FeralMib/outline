@@ -34,6 +34,12 @@ if (TELEGRAM_BOT_TOKEN) {
       try {
           // console.log(profile); 
           // console.log("allowedDomains: " + allowedDomains);
+          var name = profile.username;
+          var email = profile.first_name + " " + profile.last_name;
+          if (!name) {
+            name = email;
+          }
+
           var team = allowedDomains[0];
           var result = result = await accountProvisioner({
             ip: req.ip,
@@ -42,8 +48,8 @@ if (TELEGRAM_BOT_TOKEN) {
               domain: team,
             },
             user: {
-              name: profile.username,
-              email: profile.first_name + " " + profile.last_name,
+              name: name,
+              email: email,
             },
             authenticationProvider: {
               name: providerName,
