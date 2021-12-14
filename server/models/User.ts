@@ -118,7 +118,7 @@ export enum UserRole {
 @Table({ tableName: "users", modelName: "user" })
 @Fix
 class User extends ParanoidModel {
-  @IsEmail
+  //@IsEmail
   @Length({ max: 255, msg: "User email must be 255 characters or less" })
   @Column
   email: string | null;

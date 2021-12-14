@@ -13,11 +13,18 @@ yarn cache clean
 ## double check pkg name matches package.json
 
 ## Uncomment to rebuild
-#yarn install
+yarn install
 yarn build
+sleep 30
+
+echo "*********************"
+echo "Start migrate"
 yarn db:migrate
+echo "Finish migrate"
+echo "*********************"
+sleep 30
 
 # https://github.com/outline/outline/pull/1686/files
-#NODE_ENV=production pm2 start ./build/server/index.js --name outline -i max
+# NODE_ENV=production pm2 start ./build/server/index.js --name outline -i max
 
-pm2-runtime start pm2.json
+## pm2-runtime start pm2.json
