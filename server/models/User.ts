@@ -126,7 +126,7 @@ class User extends ParanoidModel<
   InferAttributes<User>,
   Partial<InferCreationAttributes<User>>
 > {
-  @IsEmail
+  //@IsEmail
   @Length({ max: 255, msg: "User email must be 255 characters or less" })
   @Column
   email: string | null;
