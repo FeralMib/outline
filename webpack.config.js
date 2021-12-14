@@ -87,7 +87,7 @@ module.exports = {
     new WorkboxPlugin.GenerateSW({
       clientsClaim: true,
       skipWaiting: true,
-      maximumFileSizeToCacheInBytes: 15 * 1024 * 1024, // For large bundles
+      maximumFileSizeToCacheInBytes: 32 * 1024 * 1024, // For large bundles
     }),
     new RelativeCiAgentWebpackPlugin(),
   ],
