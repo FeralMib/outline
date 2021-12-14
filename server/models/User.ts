@@ -86,7 +86,7 @@ export enum UserFlag {
 @Table({ tableName: "users", modelName: "user" })
 @Fix
 class User extends ParanoidModel {
-  @IsEmail
+  //@IsEmail
   @Column
   email: string | null;
 
