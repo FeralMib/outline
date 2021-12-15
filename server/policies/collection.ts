@@ -5,11 +5,12 @@ import { AdminRequiredError } from "../errors";
 import { allow } from "./cancan";
 
 allow(User, "createCollection", Team, (user, team) => {
+  if (user.isAdmin) return true;
   if (!team || user.isViewer || user.teamId !== team.id) {
     return false;
   }
   if (user.isAdmin || team.memberCollectionCreate) {
-    return true;
+    // return true;
   }
   return false;
 });

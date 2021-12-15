@@ -20,7 +20,7 @@ import SidebarAction from "./SidebarAction";
 import { DragObject } from "./SidebarLink";
 
 function Collections() {
-  const { documents, collections } = useStores();
+  const { auth, documents, collections } = useStores();
   const { t } = useTranslation();
   const orderedCollections = collections.orderedData;
 
@@ -79,7 +79,9 @@ function Collections() {
               />
             )}
           >
-            <SidebarAction action={createCollection} depth={0} />
+            {auth.user?.isAdmin && (
+              <SidebarAction action={createCollection} depth={0} />
+            )}
           </PaginatedList>
         </Relative>
       </Header>
