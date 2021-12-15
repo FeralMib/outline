@@ -20,7 +20,7 @@ import { DragObject } from "./SidebarLink";
 function Collections() {
   const [isFetching, setFetching] = React.useState(false);
   const [fetchError, setFetchError] = React.useState();
-  const { documents, collections } = useStores();
+  const { auth, documents, collections } = useStores();
   const { showToast } = useToasts();
   const [expanded, setExpanded] = React.useState(true);
   const isPreloaded = !!collections.orderedData.length;
@@ -90,7 +90,9 @@ function Collections() {
           belowCollection={orderedCollections[index + 1]}
         />
       ))}
-      <SidebarAction action={createCollection} depth={0} />
+      {auth.user?.isAdmin && (
+        <SidebarAction action={createCollection} depth={0} />
+      )}
     </>
   );
 
