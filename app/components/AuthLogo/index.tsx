@@ -2,6 +2,7 @@ import * as React from "react";
 import styled from "styled-components";
 import GoogleLogo from "./GoogleLogo";
 import MicrosoftLogo from "./MicrosoftLogo";
+import DiscordLogo from "./DiscordLogo";
 import SlackLogo from "./SlackLogo";
 
 type Props = {
@@ -23,6 +24,13 @@ function AuthLogo({ providerName, color, size = 16 }: Props) {
       return (
         <Logo>
           <GoogleLogo size={size} fill={color} />
+        </Logo>
+      );
+
+    case "discord":
+      return (
+        <Logo>
+          <DiscordLogo size={size} />
         </Logo>
       );
 
