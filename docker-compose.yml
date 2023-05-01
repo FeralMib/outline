@@ -13,8 +13,24 @@ services:
       POSTGRES_PASSWORD: pass
       POSTGRES_DB: outline
   s3:
-    image: lphoward/fake-s3
+    image: quay.io/minio/minio
+    command: server /data --console-address ":9001"
     ports:
-      - "127.0.0.1:4569:4569"
+      - "127.0.0.1:9000:9000"
+      - "127.0.0.1:9001:9001"
+    environment:
+      - "MINIO_ACCESS_KEY=minioadmin"
+      - "MINIO_SECRET_KEY=minioadmin"
     volumes:
-      - ./fakes3:/fakes3_root
+      - ./fakes3:/data
+  createbuckets:
+    image: minio/mc
+    depends_on:
+      - s3
+    entrypoint: >
+      /bin/sh -c "
+      /usr/bin/mc config host add myminio http://s3:9000 minioadmin minioadmin;
+      /usr/bin/mc mb myminio/assets;
+      /usr/bin/mc policy set download myminio/assets;
+      exit 0;
+      "
