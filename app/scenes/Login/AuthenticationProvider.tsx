@@ -6,11 +6,13 @@ import AuthLogo from "~/components/AuthLogo";
 import ButtonLarge from "~/components/ButtonLarge";
 import InputLarge from "~/components/InputLarge";
 import { client } from "~/utils/ApiClient";
+import TelegramLoginButton from "./TelegramLogin";
 
 type Props = {
   id: string;
   name: string;
   authUrl: string;
+  data: string;
   isCreate: boolean;
   onEmailSuccess: (email: string) => void;
 };
@@ -20,7 +22,7 @@ function AuthenticationProvider(props: Props) {
   const [showEmailSignin, setShowEmailSignin] = React.useState(false);
   const [isSubmitting, setSubmitting] = React.useState(false);
   const [email, setEmail] = React.useState("");
-  const { isCreate, id, name, authUrl } = props;
+  const { isCreate, data, id, name, authUrl } = props;
 
   const handleChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
@@ -87,19 +89,31 @@ function AuthenticationProvider(props: Props) {
     );
   }
 
-  return (
-    <Wrapper>
-      <ButtonLarge
-        onClick={() => (window.location.href = authUrl)}
-        icon={<AuthLogo providerName={id} />}
-        fullwidth
-      >
-        {t("Continue with {{ authProviderName }}", {
-          authProviderName: name,
-        })}
-      </ButtonLarge>
-    </Wrapper>
-  );
+  if (id == "telegram") {
+    return (
+      <Wrapper key={id}>
+        <TelegramLoginButton
+          bot_id={parseInt(data)}
+          icon={<AuthLogo providerName={id} />}
+        />
+      </Wrapper>
+    );
+
+  } else {
+    return (
+      <Wrapper>
+        <ButtonLarge
+          onClick={() => (window.location.href = authUrl)}
+          icon={<AuthLogo providerName={id} />}
+          fullwidth
+        >
+          {t("Continue with {{ authProviderName }}", {
+            authProviderName: name,
+          })}
+        </ButtonLarge>
+      </Wrapper>
+    );
+  }
 }
 
 const Wrapper = styled.div`
