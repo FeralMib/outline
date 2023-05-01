@@ -23,6 +23,7 @@ type Provider = {
   id: string;
   name: string;
   authUrl: string;
+  data: string;
 };
 
 export type Config = {
