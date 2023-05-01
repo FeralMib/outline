@@ -419,6 +419,21 @@ export class Environment {
   );
 
   /**
+   * Telegram authentication credentials.
+   */
+  @IsOptional()
+  @CannotUseWithout("TELEGRAM_BOT_TOKEN")
+  public TELEGRAM_BOT_NAME = this.toOptionalString(
+    process.env.TELEGRAM_BOT_NAME
+  );
+
+  @IsOptional()
+  @CannotUseWithout("TELEGRAM_BOT_NAME")
+  public TELEGRAM_BOT_TOKEN = this.toOptionalString(
+    process.env.TELEGRAM_BOT_TOKEN
+  );
+
+  /**
    * OICD client credentials. To enable authentication with any
    * compatible provider.
    */
