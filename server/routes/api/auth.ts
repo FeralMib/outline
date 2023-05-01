@@ -32,6 +32,7 @@ function filterProviders(team: Team) {
       id: provider.id,
       name: provider.name,
       authUrl: provider.authUrl,
+      data: provider.data,
     }));
 }
 
