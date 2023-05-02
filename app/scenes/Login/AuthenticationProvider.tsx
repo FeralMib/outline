@@ -8,11 +8,13 @@ import ButtonLarge from "~/components/ButtonLarge";
 import InputLarge from "~/components/InputLarge";
 import env from "~/env";
 import { client } from "~/utils/ApiClient";
+import TelegramLoginButton from "./TelegramLogin";
 
 type Props = {
   id: string;
   name: string;
   authUrl: string;
+  data: string;
   isCreate: boolean;
   onEmailSuccess: (email: string) => void;
 };
@@ -22,7 +24,7 @@ function AuthenticationProvider(props: Props) {
   const [showEmailSignin, setShowEmailSignin] = React.useState(false);
   const [isSubmitting, setSubmitting] = React.useState(false);
   const [email, setEmail] = React.useState("");
-  const { isCreate, id, name, authUrl } = props;
+  const { isCreate, data, id, name, authUrl } = props;
 
   const handleChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
@@ -89,29 +91,42 @@ function AuthenticationProvider(props: Props) {
     );
   }
 
-  // If we're on a custom domain or a subdomain then the auth must point to the
-  // apex (env.URL) for authentication so that the state cookie can be set and read.
-  // We pass the host into the auth URL so that the server can redirect on error
-  // and keep the user on the same page.
-  const { custom, teamSubdomain, host } = parseDomain(window.location.origin);
-  const needsRedirect = custom || teamSubdomain;
-  const href = needsRedirect
-    ? `${env.URL}${authUrl}?host=${encodeURI(host)}`
-    : authUrl;
+  if (id == "telegram") {
+    return (
+      <Wrapper key={id}>
+        <TelegramLoginButton
+          bot_id={parseInt(data)}
+          icon={<AuthLogo providerName={id} />}
+        />
+      </Wrapper>
+    );
 
-  return (
-    <Wrapper>
-      <ButtonLarge
-        onClick={() => (window.location.href = href)}
-        icon={<AuthLogo providerName={id} />}
-        fullwidth
-      >
-        {t("Continue with {{ authProviderName }}", {
-          authProviderName: name,
-        })}
-      </ButtonLarge>
-    </Wrapper>
-  );
+  } else {
+
+    // If we're on a custom domain or a subdomain then the auth must point to the
+    // apex (env.URL) for authentication so that the state cookie can be set and read.
+    // We pass the host into the auth URL so that the server can redirect on error
+    // and keep the user on the same page.
+    const { custom, teamSubdomain, host } = parseDomain(window.location.origin);
+    const needsRedirect = custom || teamSubdomain;
+    const href = needsRedirect
+      ? `${env.URL}${authUrl}?host=${encodeURI(host)}`
+      : authUrl;
+  
+    return (
+      <Wrapper>
+        <ButtonLarge
+          onClick={() => (window.location.href = href)}
+          icon={<AuthLogo providerName={id} />}
+          fullwidth
+        >
+          {t("Continue with {{ authProviderName }}", {
+            authProviderName: name,
+          })}
+        </ButtonLarge>
+      </Wrapper>
+    );
+  }
 }
 
 const Wrapper = styled.div`
