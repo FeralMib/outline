@@ -43,8 +43,9 @@ export const renderApp = async (
   options: { title?: string; description?: string; canonical?: string } = {}
 ) => {
   const {
-    title = "Outline",
-    description = "A modern team knowledge base for your internal documentation, product specs, support answers, meeting notes, onboarding, &amp; more…",
+    
+    title = "VAG MIB2 Wiki",
+    description = "Share your knowledge with fellow VAG-Heads to collectively build on the newest hacks or solutions",
     canonical = "",
   } = options;
 

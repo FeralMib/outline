@@ -9,6 +9,20 @@ allow(
   (actor, user) => user && user.teamId === actor.teamId
 );
 
+allow(User,"removeAdmin",User,(actor, user) => {
+  if (!user || actor.id == user.id) return false;
+  if (user.isAdmin) return false;
+  if (actor.isAdmin) return true;
+  throw new AdminRequiredError();
+});;
+
+allow(User,"changePermissionAdmin",User,(actor, user) => {
+  if (!user || actor.id == user.id) return false;
+  if (user.isAdmin) return false;
+  if (actor.isAdmin) return true;
+  throw new AdminRequiredError();
+});;
+
 allow(User, "inviteUser", Team, (actor, team) => {
   if (!team || actor.teamId !== team.id) {
     return false;

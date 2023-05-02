@@ -35,7 +35,7 @@ if ("serviceWorker" in window.navigator) {
     const maybePromise = window.navigator.serviceWorker.register(
       "/static/service-worker.js",
       {
-        scope: "/",
+        scope: "/static/",
       }
     );
 
