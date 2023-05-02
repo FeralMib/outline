@@ -33,6 +33,9 @@ if (env.CDN_URL) {
   scriptSrc.push(env.CDN_URL);
   defaultSrc.push(env.CDN_URL);
 }
+if (env.TELEGRAM_BOT_NAME) {
+  scriptSrc.push("telegram.org");
+}
 
 export default function init(app: Koa = new Koa()): Koa {
   if (isProduction) {
