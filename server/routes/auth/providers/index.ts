@@ -10,6 +10,7 @@ export type AuthenticationProviderConfig = {
   id: string;
   name: string;
   enabled: boolean;
+  data: string;
   router: Router;
 };
 
@@ -17,7 +18,7 @@ const authenticationProviderConfigs: AuthenticationProviderConfig[] = [];
 
 requireDirectory<{
   default: Router;
-  config: { name: string; enabled: boolean };
+  config: { name: string; enabled: boolean; data: string };
 }>(__dirname).forEach(([module, id]) => {
   const { config, default: router } = module;
 
@@ -42,6 +43,7 @@ requireDirectory<{
       id,
       name: config.name,
       enabled: config.enabled,
+      data: config.data,
       router,
     });
   }
