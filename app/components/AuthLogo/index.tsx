@@ -4,6 +4,7 @@ import GoogleLogo from "./GoogleLogo";
 import MicrosoftLogo from "./MicrosoftLogo";
 import DiscordLogo from "./DiscordLogo";
 import SlackLogo from "./SlackLogo";
+import TelegramLogo from "./TelegramLogo";
 
 type Props = {
   providerName: string;
@@ -40,6 +41,13 @@ function AuthLogo({ providerName, color, size = 16 }: Props) {
           <MicrosoftLogo size={size} fill={color} />
         </Logo>
       );
+
+      case "telegram":
+        return (
+          <Logo>
+            <TelegramLogo size={size} />
+          </Logo>
+        );
 
     default:
       return null;
