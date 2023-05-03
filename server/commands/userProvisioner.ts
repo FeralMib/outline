@@ -83,11 +83,13 @@ export default async function userProvisioner({
     // associated with a different authentication provider, (eg a different
     // hosted google domain). This is possible in Google Auth when moving domains.
     // In the future we may auto-migrate these.
+    /*
     if (auth.authenticationProviderId !== authenticationProviderId) {
       throw new Error(
         `User authentication ${providerId} already exists for ${auth.authenticationProviderId}, tried to assign to ${authenticationProviderId}`
       );
     }
+    */
 
     if (user) {
       await user.update({
