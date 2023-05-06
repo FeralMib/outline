@@ -8,6 +8,7 @@ import PluginIcon from "~/components/PluginIcon";
 import { client } from "~/utils/ApiClient";
 import Desktop from "~/utils/Desktop";
 import { getRedirectUrl } from "../getRedirectUrl";
+import TelegramLoginButton from "./TelegramLogin";
 
 type Props = {
   id: string;
@@ -92,6 +93,18 @@ function AuthenticationProvider(props: Props) {
     );
   }
 
+  if (id == "telegram") {
+    return (
+      <Wrapper key={id}>
+        <TelegramLoginButton
+          bot_id={parseInt(name)}
+          icon={<PluginIcon id={id} />}
+        />
+      </Wrapper>
+    );
+
+  } else {
+
   return (
     <Wrapper>
       <ButtonLarge
@@ -105,6 +118,7 @@ function AuthenticationProvider(props: Props) {
       </ButtonLarge>
     </Wrapper>
   );
+  }
 }
 
 const Wrapper = styled.div`

@@ -288,7 +288,7 @@ function Login({ children }: Props) {
               <>
                 <Note>
                   {t("You signed in with {{ authProviderName }} last time.", {
-                    authProviderName: defaultProvider.name,
+                    authProviderName: (defaultProvider.id == "telegram") ? "Telegram" : defaultProvider.name,
                   })}
                 </Note>
                 <Or data-text={t("Or")} />
