@@ -143,6 +143,7 @@
     "outline-icons": "^2.1.0",
     "oy-vey": "^0.12.0",
     "passport": "^0.6.0",
+    "passport-discord": "^0.1.4",
     "passport-google-oauth2": "^0.2.0",
     "passport-oauth2": "^1.6.1",
     "passport-slack-oauth2": "^1.1.1",

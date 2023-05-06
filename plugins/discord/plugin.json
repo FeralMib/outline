@@ -1,0 +1,5 @@
+{
+  "name": "Discord",
+  "description": "Adds a Discord authentication provider.",
+  "requiredEnvVars": ["DISCORD_CLIENT_ID", "DISCORD_CLIENT_SECRET"]
+}
