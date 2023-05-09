@@ -425,6 +425,21 @@ export class Environment {
   );
 
   /**
+   * Discord authentication credentials.
+   */
+  @IsOptional()
+  @CannotUseWithout("DISCORD_CLIENT_SECRET")
+  public DISCORD_CLIENT_ID = this.toOptionalString(
+    process.env.DISCORD_CLIENT_ID
+  );
+  
+  @IsOptional()
+  @CannotUseWithout("DISCORD_CLIENT_ID")
+  public DISCORD_CLIENT_SECRET = this.toOptionalString(
+    process.env.DISCORD_CLIENT_SECRET
+  );
+
+  /**
    * Azure OAuth2 client credentials. To enable authentication with Azure.
    */
   @IsOptional()
