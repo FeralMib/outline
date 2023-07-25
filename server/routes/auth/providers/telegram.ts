@@ -30,14 +30,14 @@ if (TELEGRAM_BOT_TOKEN) {
     },
     async function (req, profile, done) {
       try {
-        // console.log(profile); 
+        console.log(profile); 
         // console.log("allowedDomains: " + allowedDomains);
         var name = profile.username;
-        var email = profile.first_name + " " + profile.last_name;
+        var email = profile.first_name + " " + profile.last_name + "@mibwiki.one";
         if (!name) {
           name = email;
         }
-
+        console.log(email);
         var team = allowedDomains[0];
         var result = result = await accountProvisioner({
           ip: req.ip,

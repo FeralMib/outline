@@ -53,7 +53,7 @@ import Fix from "./decorators/Fix";
 @Table({ tableName: "users", modelName: "user" })
 @Fix
 class User extends ParanoidModel {
-  @IsEmail
+  //@IsEmail
   @Column
   email: string | null;
 
