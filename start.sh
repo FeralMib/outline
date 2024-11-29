@@ -1,4 +1,6 @@
+
 #!/bin/sh
+set +x
 #. $HOME/.profile
 cd $HOME/outline
 #yarn start
@@ -13,11 +15,17 @@ yarn cache clean
 ## double check pkg name matches package.json
 
 ## Uncomment to rebuild
-#yarn install
+if [ ! -e build ]; then
+yarn install
 yarn build
 yarn db:migrate
+fi
 
 # https://github.com/outline/outline/pull/1686/files
 #NODE_ENV=production pm2 start ./build/server/index.js --name outline -i max
 
-pm2-runtime start pm2.json
+#pm2 install pm2-logrotate
+#pm2 set pm2-logrotate:max_size 10M
+
+#pm2-runtime start pm2.json
+NODE_ENV=production yarn start

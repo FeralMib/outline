@@ -15,14 +15,15 @@ yarn cache clean
 ## Uncomment to rebuild
 yarn install
 yarn build
-sleep 30
+
+#sleep 30
 
 echo "*********************"
 echo "Start migrate"
 yarn db:migrate
 echo "Finish migrate"
 echo "*********************"
-sleep 30
+sleep 120
 
 # https://github.com/outline/outline/pull/1686/files
 # NODE_ENV=production pm2 start ./build/server/index.js --name outline -i max
