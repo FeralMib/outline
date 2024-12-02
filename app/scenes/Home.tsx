@@ -8,6 +8,11 @@ import { s } from "@shared/styles";
 import { Action } from "~/components/Actions";
 import Empty from "~/components/Empty";
 import Heading from "~/components/Heading";
+import Subheading from "~/components/Subheading";
+import List from "~/components/List";
+import ListItem from "~/components/Toast";
+import Link from "~/components/Branding";
+import Text from "~/components/Text";
 import InputSearchPage from "~/components/InputSearchPage";
 import LanguagePrompt from "~/components/LanguagePrompt";
 import PaginatedDocumentList from "~/components/PaginatedDocumentList";
@@ -38,7 +43,7 @@ function Home() {
   return (
     <Scene
       icon={<HomeIcon />}
-      title={t("Home")}
+      title={t("MIB2 Wiki Home")}
       left={
         <InputSearchPage source="dashboard" label={t("Search documents")} />
       }
@@ -51,7 +56,27 @@ function Home() {
       <ResizingHeightContainer>
         {!ui.languagePromptDismissed && <LanguagePrompt key="language" />}
       </ResizingHeightContainer>
-      <Heading>{t("Home")}</Heading>
+      <Heading>{t("MIB2 Wiki")}</Heading>
+      <Subheading>
+        Welcome to VAG MIB2 Wiki
+      </Subheading>
+      <Text>
+        Share your knowledge with fellow VAG-Heads to collectively build on the newest hacks or solutions.
+      </Text>
+      <Text>
+        At the moment we are mostly focused on MIB solutions but this should be considered an open board to share knowledge about our favourite VAG cars.
+      </Text>
+      <Text>
+        To discuss anything on this board get in touch on either:
+      </Text>
+      <ul>
+        <li>
+          Telegram: <a href="https://t.me/joinchat/T_pADdwJyUXq0VoH">https://t.me/joinchat/T_pADdwJyUXq0VoH</a>
+        </li>
+        <li>
+          Discord: <a href="https://discord.gg/YU3rjatWjT">https://discord.gg/YU3rjatWjT</a>
+        </li>
+      </ul>
       <PinnedDocuments pins={pins.home} canUpdate={can.update} />
       <Documents>
         <Tabs>
