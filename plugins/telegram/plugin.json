@@ -1,0 +1,5 @@
+{
+  "name": "Telegram",
+  "description": "Adds a Telegram authentication provider.",
+  "requiredEnvVars": ["TELEGRAM_BOT_TOKEN", "TELEGRAM_BOT_NAME"]
+}
